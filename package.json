@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/MahmoudOwaimer/NFTBattleGame/issues"
   },
-  "homepage": "https://github.com/MahmoudOwaimer/NFTBattleGame#readme"
+  "homepage": "https://github.com/MahmoudOwaimer/NFTBattleGame#readme",
+  "devDependencies": {
+    "hardhat": "^2.8.4"
+  }
 }
