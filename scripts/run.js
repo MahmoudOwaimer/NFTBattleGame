@@ -28,6 +28,7 @@ const main = async () => {
   let returnedTokenUri = await gameContract.tokenURI(1);
   console.log("Token URI:", returnedTokenUri);
 
+  txn = await gameContract.attackBoss();
 };
 
 const runMain = async () => {
