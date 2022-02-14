@@ -88,7 +88,7 @@ contract MyEpicGame is ERC721 {
         maxHp: bossHp,
         attackDamage: bossAttackDamage
       });
-      console.log("Done initializing boss %s w/ HP %s, img %s", bigBoss.name, bigBoss.hp, bigBoss.imageURI);
+      // console.log("Done initializing boss %s w/ HP %s, img %s", bigBoss.name, bigBoss.hp, bigBoss.imageURI);
     }
     // All the other character code is below here is the same as before, just not showing it to keep things short!
 
@@ -113,7 +113,7 @@ contract MyEpicGame is ERC721 {
         attackDamage: defaultCharacters[_characterIndex].attackDamage
       });
 
-      console.log("Minted NFT w/ tokenId %s and characterIndex %s", newItemId, _characterIndex);
+      // console.log("Minted NFT w/ tokenId %s and characterIndex %s", newItemId, _characterIndex);
 
       // Keep an easy way to see who owns what NFT.
       nftHolders[msg.sender] = newItemId;
@@ -168,7 +168,24 @@ contract MyEpicGame is ERC721 {
         bigBoss.hp > 0,
         "Error: boss must have HP to attack boss."
       );
+
+      // Allow player to attack boss.
+      if (bigBoss.hp < player.attackDamage) {
+        bigBoss.hp = 0;
+      } else {
+        bigBoss.hp = bigBoss.hp - player.attackDamage;
+      }
+
+      // Allow boss to attack player.
+      if (player.hp < bigBoss.attackDamage) {
+        player.hp = 0;
+      } else {
+        player.hp = player.hp - bigBoss.attackDamage;
+      }
+
+      // Console for ease.
+      console.log("Player attacked boss. Boss HP status: %s", bigBoss.hp);
+      console.log("Boss attacked player. Player HP status: %s\n", player.hp);
+
     }
-
-
   }
